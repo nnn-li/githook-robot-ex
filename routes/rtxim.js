@@ -73,9 +73,12 @@ function httpRtxPost(user,message){
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  var str = "你好";
+ var biz_content = "欢迎关注！";
+var gbkBytes = iconv.encode(biz_content,'gbk');
 
-  res.send(str);
+res.setHeader('Content-Type', 'text/html; charset=gbk')
+res.end(gbkBytes)
+
 });
 
 router.post('/', function(req, res, next) {
@@ -90,16 +93,11 @@ router.post('/', function(req, res, next) {
    let url = repository.url;
    let users = 'julian';
 
- console.log(body)
- console.log(commits)
  console.log(message)
-
-   httpRtxPost(users,message)
-  //  httpRtx(function (data) {
-  //    LogFile.info(data)
-  //  })
-
-
+  var biz_content = message.toString();
+  var gbkBytes = iconv.encode(biz_content,'gbk');
+  console.log(gbkBytes)
+   httpRtxPost(users,gbkBytes)
 
    res.json({"ss":"ss"});
 });
