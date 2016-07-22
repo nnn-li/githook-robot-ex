@@ -18,6 +18,49 @@ function httpRtx(call){
   });
 }
 
+function httpRtxPost(){
+      var postData = querystring.stringify({
+       'sender' : 'robot',
+       'pwd' : 'robot',
+       'receivers' : 'Julian',
+       'msg' : 'robot',
+       'sessionid' : 'xxxx'
+      });
+
+      var options = {
+        hostname: '172.20.7.29',
+        port: 8012,
+        path: '/SendIM.cgi',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': Buffer.byteLength(postData)
+        }
+      };
+
+
+      var req = http.request(options, (res) => {
+          console.log(`STATUS: ${res.statusCode}`);
+          console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+          res.setEncoding('utf8');
+          res.on('data', (chunk) => {
+            console.log(`BODY: ${chunk}`);
+          });
+          res.on('end', () => {
+            console.log('No more data in response.');
+          });
+        });
+
+        req.on('error', (e) => {
+          console.log(`problem with request: ${e.message}`);
+        });
+
+        // write data to request body
+        req.write(postData);
+        req.end();
+
+}
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('rtx im');
@@ -25,12 +68,23 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
    let LogFile = log4js.getLogger('log_file');
-   httpRtx(function (data) {
-     LogFile.info(data)
-   })
-   LogFile.info(req.body)
 
-   res.json(req.body)
+   let body =  req.body;
+   let commits = body.commits;
+   let author = commits.author;
+   let name = author.name;
+   let message = commits.message;
+   let repository = body.repository;
+   let url = repository.url;
+ console.log(commits)
+    httpRtxPost()
+  //  httpRtx(function (data) {
+  //    LogFile.info(data)
+  //  })
+
+
+
+   res.json({"ss":"ss"});
 });
 
 module.exports = router;
