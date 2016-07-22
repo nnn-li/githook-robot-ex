@@ -3,6 +3,8 @@ const router = express.Router();
 
 const http = require('http');
 
+const querystring = require('querystring');
+
 const log4js = require("log4js");
 const log4js_config = require("../logConf.json");
 
@@ -22,20 +24,16 @@ function httpRtxPost(){
       var postData = querystring.stringify({
        'sender' : 'robot',
        'pwd' : 'robot',
-       'receivers' : 'Julian',
-       'msg' : 'robot',
-       'sessionid' : 'xxxx'
+       'receivers' : 'julian',
+       'msg' : 'TestMesssss',
+       'sessionid' : 'XXXX'
       });
 
       var options = {
         hostname: '172.20.7.29',
         port: 8012,
         path: '/SendIM.cgi',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(postData)
-        }
+        method: 'POST'
       };
 
 
@@ -51,14 +49,13 @@ function httpRtxPost(){
           });
         });
 
-        req.on('error', (e) => {
-          console.log(`problem with request: ${e.message}`);
-        });
+      req.on('error', (e) => {
+        console.log(`problem with request: ${e.message}`);
+      });
 
-        // write data to request body
-        req.write(postData);
-        req.end();
-
+      // write data to request body
+      req.write(postData);
+      req.end();
 }
 
 /* GET users listing. */
@@ -77,7 +74,7 @@ router.post('/', function(req, res, next) {
   //  let repository = body.repository;
   //  let url = repository.url;
 //  console.log(body)
-    httpRtxPost()
+   httpRtxPost()
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
