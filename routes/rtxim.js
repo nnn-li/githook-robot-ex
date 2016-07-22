@@ -74,7 +74,7 @@ router.post('/', function(req, res, next) {
    let commits = body.commits;
   //  let author = commits.author;
   //  let name = author.name;
-   let message = commits.message;
+   let message = commits[0].message;
   //  let repository = body.repository;
   //  let url = repository.url;
    let users = 'julian';
@@ -82,7 +82,7 @@ router.post('/', function(req, res, next) {
  console.log(body)
  console.log(commits)
  console.log(message)
-   httpRtxPost(users,message)
+   httpRtxPost(users,"messageces")
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
