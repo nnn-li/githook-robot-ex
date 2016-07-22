@@ -82,7 +82,7 @@ router.post('/', function(req, res, next) {
  console.log(body)
  console.log(commits)
  console.log(message)
-   httpRtxPost(users,"messageces")
+   httpRtxPost(users,message)
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
