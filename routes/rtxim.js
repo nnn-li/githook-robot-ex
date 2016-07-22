@@ -10,9 +10,13 @@ const log4js_config = require("../logConf.json");
 
 const iconv = require('iconv-lite');
 
+const StringDecoder = require('string_decoder').StringDecoder;
+
+
+
 log4js.configure(log4js_config);
 
-const gbk = require('liveinjs-gbk');
+
 
 function httpRtx(call){
    http.get("http://172.20.7.29:8012/SendIM.cgi?sender=robot&pwd=robot&receivers=Julian&msg=TestMess&sessionid=XXXX", function(ress) {
@@ -41,7 +45,7 @@ function httpRtxPost(user,message){
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(postData)
+          'Content-Length': Buffer.byteLength(postData, 'gb2312') 
         }
       };
 
@@ -70,9 +74,7 @@ function httpRtxPost(user,message){
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var str = "你好";
-  var by = gbk.enGBK(str);
 
-  console.log(by)
   res.send(str);
 });
 
@@ -91,8 +93,8 @@ router.post('/', function(req, res, next) {
  console.log(body)
  console.log(commits)
  console.log(message)
- console.log(gbk.enGBK('你好'))
-   httpRtxPost(users,'messagefsdsd2')
+
+   httpRtxPost(users,message)
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
