@@ -76,13 +76,13 @@ router.post('/', function(req, res, next) {
   //  let name = author.name;
    let message = commits[0].message;
   //  let repository = body.repository;
-  //  let url = repository.url;
+   let url = repository.url;
    let users = 'julian';
 
  console.log(body)
  console.log(commits)
  console.log(message)
-   httpRtxPost(users,message)
+   httpRtxPost(users,'、【详情】、后台【运送方式管理】')
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
