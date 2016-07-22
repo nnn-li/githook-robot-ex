@@ -8,6 +8,7 @@ const querystring = require('querystring');
 const log4js = require("log4js");
 const log4js_config = require("../logConf.json");
 
+const iconv = require('iconv-lite');
 
 log4js.configure(log4js_config);
 
@@ -21,11 +22,14 @@ function httpRtx(call){
 }
 
 function httpRtxPost(user,message){
+
+    var gbkMsg = iconv.encode(message,'gbk')
+
       var postData = querystring.stringify({
        'sender' : 'robot',
        'pwd' : 'robot',
        'receivers' : user,
-       'msg' : message,
+       'msg' : gbkMsg,
        'sessionid' : 'XXXX'
       });
 
@@ -82,7 +86,7 @@ router.post('/', function(req, res, next) {
  console.log(body)
  console.log(commits)
  console.log(message)
-   httpRtxPost(users,'、【详情】、后台【运送方式管理】')
+   httpRtxPost(users,'【详情】、后台【运送方式管理】')
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
