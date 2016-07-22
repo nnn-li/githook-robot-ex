@@ -70,13 +70,13 @@ router.post('/', function(req, res, next) {
    let LogFile = log4js.getLogger('log_file');
 
    let body =  req.body;
-   let commits = body.commits;
-   let author = commits.author;
-   let name = author.name;
-   let message = commits.message;
-   let repository = body.repository;
-   let url = repository.url;
- console.log(commits)
+  //  let commits = body.commits;
+  //  let author = commits.author;
+  //  let name = author.name;
+  //  let message = commits.message;
+  //  let repository = body.repository;
+  //  let url = repository.url;
+//  console.log(body)
     httpRtxPost()
   //  httpRtx(function (data) {
   //    LogFile.info(data)
