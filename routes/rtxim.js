@@ -33,7 +33,7 @@ function httpRtxPost(user,message){
       var postData = querystring.stringify({
        'sender' : 'robot',
        'pwd' : 'robot',
-       'receivers' : 'user',
+       'receivers' : user,
        'msg' : message,
        'sessionid' : 'XXXX'
       });
