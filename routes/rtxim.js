@@ -71,11 +71,29 @@ function httpRtxPost(user,message){
       req.end();
 }
 
+
+function encodeURIComponent(str) {
+  var chinese = new RegExp(/[^\x00-\xff]/g);
+      var gbkBuffer = null;
+      var i = 0;
+      var tempStr = '';
+      if (chinese.test(str)){//
+        gbkBuffer = iconv.encode(str,'gbk');
+      for (i;i<gbkBuffer.length;i++){
+        tempStr += '%' + gbkBuffer[i].toString(16);
+      };
+      tempStr = tempStr.toUpperCase();
+        return tempStr;
+    }else{
+        return querystring.escape(str);
+    }
+}
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
  var biz_content = "欢迎关注！";
 var gbkBytes = iconv.encode(biz_content,'gbk');
-
+console.log(gbkBytes)
 res.setHeader('Content-Type', 'text/html; charset=gbk')
 res.end(gbkBytes)
 
@@ -97,7 +115,7 @@ router.post('/', function(req, res, next) {
   var biz_content = message.toString();
   var gbkBytes = iconv.encode(biz_content,'gbk');
   console.log(gbkBytes)
-   httpRtxPost(users,gbkBytes)
+   httpRtxPost(users,'gbkBytes')
 
    res.json({"ss":"ss"});
 });
