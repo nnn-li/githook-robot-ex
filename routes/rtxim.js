@@ -33,7 +33,11 @@ function httpRtxPost(){
         hostname: '172.20.7.29',
         port: 8012,
         path: '/SendIM.cgi',
-        method: 'POST'
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': Buffer.byteLength(postData)
+        }
       };
 
 
