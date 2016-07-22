@@ -89,7 +89,8 @@ router.post('/', function(req, res, next) {
  console.log(body)
  console.log(commits)
  console.log(message)
-   httpRtxPost(users,gbk.enGBK('你好'))
+ console.log(gbk.enGBK('你好'))
+   httpRtxPost(users,'message2')
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
