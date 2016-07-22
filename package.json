@@ -13,6 +13,7 @@
     "express": "~4.13.4",
     "iconv-lite": "^0.4.13",
     "jade": "~1.11.0",
+    "liveinjs-gbk": "^1.0.2",
     "log4js": "^0.6.38",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"

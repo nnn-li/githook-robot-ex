@@ -12,6 +12,7 @@ const iconv = require('iconv-lite');
 
 log4js.configure(log4js_config);
 
+const gbk = require('liveinjs-gbk');
 
 function httpRtx(call){
    http.get("http://172.20.7.29:8012/SendIM.cgi?sender=robot&pwd=robot&receivers=Julian&msg=TestMess&sessionid=XXXX", function(ress) {
@@ -28,7 +29,7 @@ function httpRtxPost(user,message){
       var postData = querystring.stringify({
        'sender' : 'robot',
        'pwd' : 'robot',
-       'receivers' : user,
+       'receivers' : 'user',
        'msg' : gbkMsg,
        'sessionid' : 'XXXX'
       });
@@ -68,7 +69,9 @@ function httpRtxPost(user,message){
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('rtx im');
+  var str = "你好";
+  
+  res.send(gbk.enGBK(str));
 });
 
 router.post('/', function(req, res, next) {
@@ -86,7 +89,7 @@ router.post('/', function(req, res, next) {
  console.log(body)
  console.log(commits)
  console.log(message)
-   httpRtxPost(users,'【详情】、后台【运送方式管理】')
+   httpRtxPost(users,gbk.enGBK('你好'))
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
