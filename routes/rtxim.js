@@ -20,12 +20,12 @@ function httpRtx(call){
   });
 }
 
-function httpRtxPost(){
+function httpRtxPost(user,message){
       var postData = querystring.stringify({
        'sender' : 'robot',
        'pwd' : 'robot',
-       'receivers' : 'julian',
-       'msg' : 'TestMesssss',
+       'receivers' : user,
+       'msg' : message,
        'sessionid' : 'XXXX'
       });
 
@@ -71,14 +71,16 @@ router.post('/', function(req, res, next) {
    let LogFile = log4js.getLogger('log_file');
 
    let body =  req.body;
-  //  let commits = body.commits;
-  //  let author = commits.author;
-  //  let name = author.name;
-  //  let message = commits.message;
-  //  let repository = body.repository;
-  //  let url = repository.url;
+   let commits = body.commits;
+   let author = commits.author;
+   let name = author.name;
+   let message = commits.message;
+   let repository = body.repository;
+   let url = repository.url;
+   let users = 'julian';
+
 //  console.log(body)
-   httpRtxPost()
+   httpRtxPost(users,message)
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
