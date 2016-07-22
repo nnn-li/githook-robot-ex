@@ -75,7 +75,7 @@ router.post('/', function(req, res, next) {
   //  let author = commits.author;
   //  let name = author.name;
    let message = commits[0].message;
-  //  let repository = body.repository;
+   let repository = body.repository;
    let url = repository.url;
    let users = 'julian';
 
