@@ -24,13 +24,13 @@ function httpRtx(call){
 
 function httpRtxPost(user,message){
 
-    var gbkMsg = iconv.encode(message,'gbk')
+    
 
       var postData = querystring.stringify({
        'sender' : 'robot',
        'pwd' : 'robot',
        'receivers' : 'user',
-       'msg' : gbkMsg,
+       'msg' : message,
        'sessionid' : 'XXXX'
       });
 
@@ -70,8 +70,10 @@ function httpRtxPost(user,message){
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var str = "你好";
-  
-  res.send(gbk.enGBK(str));
+  var by = gbk.enGBK(str);
+
+  console.log(by)
+  res.send(str);
 });
 
 router.post('/', function(req, res, next) {
@@ -90,7 +92,7 @@ router.post('/', function(req, res, next) {
  console.log(commits)
  console.log(message)
  console.log(gbk.enGBK('你好'))
-   httpRtxPost(users,'message2')
+   httpRtxPost(users,'messagefsdsd2')
   //  httpRtx(function (data) {
   //    LogFile.info(data)
   //  })
