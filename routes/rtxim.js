@@ -91,7 +91,7 @@ function encodeURIComponent(str) {
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
- var biz_content = "Ê¨¢ËøéÂÖ≥Ê≥®ÔºÅ";
+ var biz_content = "ª∂”≠πÿ◊¢£°";
 var gbkBytes = iconv.encode(biz_content,'gbk');
 console.log(gbkBytes)
 res.setHeader('Content-Type', 'text/html; charset=gbk')
@@ -115,7 +115,7 @@ router.post('/', function(req, res, next) {
   var biz_content = message.toString();
   var gbkBytes = iconv.encode(biz_content,'gbk');
   console.log(gbkBytes)
-   httpRtxPost(users,'gbkBytes')
+   httpRtxPost(users,message)
 
    res.json({"ss":"ss"});
 });
