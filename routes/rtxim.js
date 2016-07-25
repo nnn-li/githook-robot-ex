@@ -44,8 +44,7 @@ function httpRtxPost(user,message){
         path: '/SendIM.cgi',
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(postData, 'gb2312') 
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       };
 
